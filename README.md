@@ -30,4 +30,5 @@ https://github.com/openshift/community
 systemctl disable cloud-config.service cloud-final.service cloud-init-local.service cloud-init.service cloud-config.target cloud-init.target
 systemctl stop cloud-config.service cloud-final.service cloud-init-local.service cloud-init.service cloud-config.target cloud-init.target
 
-
+# patch
+oc patch ClusterVersion version --type merge --patch '{"spec":{"upstream":"https://amd64.origin.releases.ci.openshift.org/graph"}}'

@@ -26,3 +26,8 @@ https://github.com/openshift/okd
 
 https://github.com/openshift/community
 
+# AWS baremetal
+systemctl disable cloud-config.service cloud-final.service cloud-init-local.service cloud-init.service cloud-config.target cloud-init.target
+systemctl stop cloud-config.service cloud-final.service cloud-init-local.service cloud-init.service cloud-config.target cloud-init.target
+
+

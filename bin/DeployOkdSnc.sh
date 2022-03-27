@@ -6,7 +6,7 @@ set -x
 CPU=${SNC_CPU:-20}
 MEMORY=${SNC_MEMORY:-61440}
 DISK=${SNC_DISK:-200}
-FCOS_VER=${FCOS_VER:-33.20210104.3.0}
+FCOS_VER=${FCOS_VER:-35.20220227.3.0}
 FCOS_STREAM=${FCOS_STREAM:-stable}
 
 for i in "$@"
@@ -39,7 +39,7 @@ function configOkdNode() {
 
 cat << EOF > ${OKD4_SNC_PATH}/work-dir/ignition/${role}.yml
 variant: fcos
-version: 1.1.0
+version: 1.4.0
 ignition:
   config:
     merge:
@@ -107,15 +107,16 @@ rm -rf okd-release-tmp
 # Download fcct
 rm -rf ${OKD4_SNC_PATH}/work-dir
 mkdir -p ${OKD4_SNC_PATH}/work-dir/ignition
-wget https://github.com/coreos/fcct/releases/download/v0.6.0/fcct-x86_64-unknown-linux-gnu
-mv fcct-x86_64-unknown-linux-gnu ${OKD4_SNC_PATH}/work-dir/fcct 
+wget https://github.com/coreos/butane/releases/download/v0.14.0/butane-x86_64-unknown-linux-gnu
+mv butane-x86_64-unknown-linux-gnu ${OKD4_SNC_PATH}/work-dir/fcct 
 chmod 750 ${OKD4_SNC_PATH}/work-dir/fcct
 
 # Create and deploy ignition files
 rm -rf ${OKD4_SNC_PATH}/okd4-install-dir
 mkdir -p ${OKD4_SNC_PATH}/okd4-install-dir
 cp ${OKD4_SNC_PATH}/install-config-snc.yaml ${OKD4_SNC_PATH}/okd4-install-dir/install-config.yaml
-OKD_VER=$(echo $OKD_RELEASE | sed  "s|4.7.0-0.okd|4.7|g")
+OKD_VER=$(echo $OKD_RELEASE | sed  "s|4.9.0-0.okd|4.9|g")
+# OKD_VER=$(echo $OKD_RELEASE | sed  "s|4.10.0-0.okd|4.10|g")
 sed -i "s|%%OKD_VER%%|${OKD_VER}|g" ${OKD4_SNC_PATH}/okd4-install-dir/install-config.yaml
 openshift-install --dir=${OKD4_SNC_PATH}/okd4-install-dir create ignition-configs
 

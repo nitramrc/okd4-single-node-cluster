@@ -30,3 +30,11 @@ sed -i "s|%%MASTER_HOST%%|$(echo ${MASTER_HOST} | cut -d"." -f4)|g" /etc/named/z
 sed -i "s|%%BOOTSTRAP_HOST%%|$(echo ${BOOTSTRAP_HOST} | cut -d"." -f4)|g" /etc/named/zones/db.snc_ptr
 
 systemctl restart named
+systemctl enable named
+
+
+nmcli conn modify "eth0" ipv4.ignore-auto-dns yes
+nmcli conn modify "eth0" ipv4.dns "${SNC_HOST}"
+nmcli conn modify "eth0" ipv4.dns-search "${SNC_DOMAIN}"
+
+systemctl restart NetworkManager

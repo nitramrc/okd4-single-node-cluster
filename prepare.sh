@@ -31,6 +31,20 @@ chmod 750 ~/bin/*
 
 echo 'export PATH="$HOME/bin:$PATH"' >> ~/.bashrc
 echo ". /root/bin/setSncEnv.sh" >> ~/.bashrc
-# . /root/bin/setSncEnv.sh
+. /root/bin/setSncEnv.sh
+
+/root/bin/setupDNS.sh
+
+cp ${OKD4_SNC_PATH}/okd4-single-node-cluster/install-config-snc.yaml ${OKD4_SNC_PATH}/install-config-snc.yaml
+sed -i "s|%%SNC_DOMAIN%%|${SNC_DOMAIN}|g" ${OKD4_SNC_PATH}/install-config-snc.yaml
+SSH_KEY=$(cat ~/.ssh/id_ed25519.pub)
+sed -i "s|%%SSH_KEY%%|${SSH_KEY}|g" ${OKD4_SNC_PATH}/install-config-snc.yaml
 
 
+cd ${OKD4_SNC_PATH}
+wget https://github.com/openshift/okd/releases/download/${OKD_RELEASE}/openshift-client-linux-${OKD_RELEASE}.tar.gz
+tar -xzf openshift-client-linux-${OKD_RELEASE}.tar.gz
+mv oc ~/bin
+mv kubectl ~/bin
+rm -f openshift-client-linux-${OKD_RELEASE}.tar.gz
+rm -f README.md

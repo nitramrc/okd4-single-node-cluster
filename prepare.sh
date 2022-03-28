@@ -48,3 +48,9 @@ mv oc ~/bin
 mv kubectl ~/bin
 rm -f openshift-client-linux-${OKD_RELEASE}.tar.gz
 rm -f README.md
+
+
+dnf -y groupinstall "Xfce" "base-x"
+dnf -y install xrdp
+systemctl start xrdp
+dnf install virt-manager

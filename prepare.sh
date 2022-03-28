@@ -55,6 +55,9 @@ SSH_KEY=$(cat ~/.ssh/id_ed25519.pub)
 sed -i "s|%%SSH_KEY%%|${SSH_KEY}|g" ${OKD4_SNC_PATH}/install-config-snc.yaml
 
 
+########## manual debug
+
+
 cd ${OKD4_SNC_PATH}
 wget https://github.com/openshift/okd/releases/download/${OKD_RELEASE}/openshift-client-linux-${OKD_RELEASE}.tar.gz
 tar -xzf openshift-client-linux-${OKD_RELEASE}.tar.gz

@@ -52,7 +52,9 @@ virsh net-update default add-last ip-dhcp-host '<host mac="52:54:00:fb:85:a1" ip
 
 # testing
 ```
+OCP_VERSION=$OKD_RELEASE
 cd ${OKD4_SNC_PATH}
+yes | cp -f install-config-snc.yaml install-config.yaml
 ISO_URL=$(openshift-install coreos print-stream-json | grep location | grep x86_64 | grep iso | cut -d\" -f4)
 curl $ISO_URL > rhcos-live.x86_64.iso
 mkdir ocp
@@ -61,5 +63,6 @@ openshift-install --dir=ocp create single-node-ignition-config
 alias coreos-installer='podman run --privileged --rm -v /dev:/dev -v /run/udev:/run/udev -v $PWD:/data -w /data quay.io/coreos/coreos-installer:release'
 cp ocp/bootstrap-in-place-for-live-iso.ign iso.ign
 coreos-installer iso ignition embed -fi iso.ign rhcos-live.x86_64.iso
+yes | cp -f rhcos-live.x86_64.iso /tmp
 
 ```

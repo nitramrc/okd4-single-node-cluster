@@ -38,3 +38,5 @@ nmcli conn modify "eth0" ipv4.dns "${SNC_HOST}"
 nmcli conn modify "eth0" ipv4.dns-search "${SNC_DOMAIN}"
 
 systemctl restart NetworkManager
+
+virsh net-update default add-last ip-dhcp-host '<host mac="52:54:00:fb:85:a1" ip="192.168.122.150"/>' --live --config --parent-index 0

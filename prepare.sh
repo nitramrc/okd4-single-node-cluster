@@ -14,6 +14,11 @@ virsh pool-autostart default
 virsh pool-start default
 systemctl start libvirtd
 
+dnf -y groupinstall "Xfce" "base-x"
+dnf -y install xrdp
+systemctl start xrdp
+dnf -y install virt-manager
+
 systemctl enable nginx --now
 mkdir -p /usr/share/nginx/html/install/fcos/ignition
 systemctl start nginx
@@ -50,7 +55,3 @@ rm -f openshift-client-linux-${OKD_RELEASE}.tar.gz
 rm -f README.md
 
 
-dnf -y groupinstall "Xfce" "base-x"
-dnf -y install xrdp
-systemctl start xrdp
-dnf -y install virt-manager

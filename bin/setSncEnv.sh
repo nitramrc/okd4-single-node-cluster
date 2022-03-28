@@ -11,5 +11,5 @@ export INSTALL_ROOT=/usr/share/nginx/html/install
 export INSTALL_URL=http://${SNC_HOST}/install
 export OKD4_SNC_PATH=/root/okd4-snc
 export OKD_REGISTRY=quay.io/openshift/okd
-export OKD_RELEASE=4.9.0-0.okd-2022-02-12-140851
-# export OKD_RELEASE=4.10.0-0.okd-2022-03-07-131213
+# export OKD_RELEASE=4.9.0-0.okd-2022-02-12-140851
+export OKD_RELEASE=4.10.0-0.okd-2022-03-07-131213

@@ -33,7 +33,7 @@ git clone -b new --single-branch git@github.com:nitramrc/okd4-single-node-cluste
 cd okd4-single-node-cluster
 
 mkdir -p ~/bin
-cp ./bin/* ~/bin
+cp -f ./bin/* ~/bin
 chmod 750 ~/bin/*
 
 ##########

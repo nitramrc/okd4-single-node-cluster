@@ -25,6 +25,8 @@ systemctl start nginx
 
 ssh-keygen -t ed25519 -N "" -f /root/.ssh/id_ed25519
 
+########## manual debug
+
 mkdir -p /root/okd4-snc
 cd /root/okd4-snc
 git clone -b new --single-branch git@github.com:nitramrc/okd4-single-node-cluster.git
@@ -34,11 +36,18 @@ mkdir -p ~/bin
 cp ./bin/* ~/bin
 chmod 750 ~/bin/*
 
+##########
+
 echo 'export PATH="$HOME/bin:$PATH"' >> ~/.bashrc
 echo ". /root/bin/setSncEnv.sh" >> ~/.bashrc
 . /root/bin/setSncEnv.sh
 
+########## manual debug
+
 /root/bin/setupDNS.sh
+
+########## manual debug
+
 
 cp ${OKD4_SNC_PATH}/okd4-single-node-cluster/install-config-snc.yaml ${OKD4_SNC_PATH}/install-config-snc.yaml
 sed -i "s|%%SNC_DOMAIN%%|${SNC_DOMAIN}|g" ${OKD4_SNC_PATH}/install-config-snc.yaml
@@ -54,4 +63,11 @@ mv kubectl ~/bin
 rm -f openshift-client-linux-${OKD_RELEASE}.tar.gz
 rm -f README.md
 
-
+mkdir -p ${OKD4_SNC_PATH}/okd-release-tmp
+cd ${OKD4_SNC_PATH}/okd-release-tmp
+oc adm release extract --command='openshift-install' ${OKD_REGISTRY}:${OKD_RELEASE}
+oc adm release extract --command='oc' ${OKD_REGISTRY}:${OKD_RELEASE}
+mv -f openshift-install ~/bin
+mv -f oc ~/bin
+cd ..
+rm -rf okd-release-tmp

@@ -35,7 +35,7 @@ systemctl enable named
 
 nmcli conn modify "eth0" ipv4.ignore-auto-dns yes
 nmcli conn modify "eth0" ipv4.dns "${SNC_HOST}"
-nmcli conn modify "eth0" ipv4.dns-search "${SNC_DOMAIN}"
+nmcli conn modify "eth0" ipv4.dns-search "okd4-snc.${SNC_DOMAIN}"
 
 systemctl restart NetworkManager
 

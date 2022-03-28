@@ -30,7 +30,7 @@ cd /root/okd4-snc
 git clone -b new --single-branch git@github.com:nitramrc/okd4-single-node-cluster.git
 cd okd4-single-node-cluster
 
-mkdir ~/bin
+mkdir -p ~/bin
 cp ./bin/* ~/bin
 chmod 750 ~/bin/*
 

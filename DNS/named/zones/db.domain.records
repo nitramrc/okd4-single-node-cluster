@@ -9,11 +9,13 @@
     IN      NS     snc-host.%%SNC_DOMAIN%%.
 
 ; name servers - A records
-snc-host.%%SNC_DOMAIN%%.         IN      A      %%SNC_HOST%%
+;snc-host.%%SNC_DOMAIN%%.         IN      A      %%SNC_HOST%%
+snc-host.okd4-snc.%%SNC_DOMAIN%%.         IN      A      %%SNC_HOST%%
 
 ; %%SNC_NETWORK%% - A records
-okd4-snc-bootstrap.%%SNC_DOMAIN%%.  IN      A      %%BOOTSTRAP_HOST%%
-okd4-snc-master.%%SNC_DOMAIN%%.     IN      A      %%MASTER_HOST%%
+;okd4-snc-bootstrap.%%SNC_DOMAIN%%.  IN      A      %%BOOTSTRAP_HOST%%
+;okd4-snc-master.%%SNC_DOMAIN%%.     IN      A      %%MASTER_HOST%%
+master.okd4-snc.%%SNC_DOMAIN%%.     IN      A      %%MASTER_HOST%%
 etcd-0.okd4-snc.%%SNC_DOMAIN%%.              IN      A      %%MASTER_HOST%%
 *.apps.okd4-snc.%%SNC_DOMAIN%%.     IN      A      %%MASTER_HOST%%
 ;api.okd4-snc.%%SNC_DOMAIN%%.        IN      A      %%BOOTSTRAP_HOST%% ; remove-after-bootstrap

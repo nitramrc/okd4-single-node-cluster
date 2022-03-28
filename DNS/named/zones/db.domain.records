@@ -9,8 +9,8 @@
     IN      NS     snc-host.%%SNC_DOMAIN%%.
 
 ; name servers - A records
-;snc-host.%%SNC_DOMAIN%%.         IN      A      %%SNC_HOST%%
-snc-host.okd4-snc.%%SNC_DOMAIN%%.         IN      A      %%SNC_HOST%%
+snc-host.%%SNC_DOMAIN%%.         IN      A      %%SNC_HOST%%
+;snc-host.okd4-snc.%%SNC_DOMAIN%%.         IN      A      %%SNC_HOST%%
 
 ; %%SNC_NETWORK%% - A records
 ;okd4-snc-bootstrap.%%SNC_DOMAIN%%.  IN      A      %%BOOTSTRAP_HOST%%

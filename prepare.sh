@@ -53,4 +53,4 @@ rm -f README.md
 dnf -y groupinstall "Xfce" "base-x"
 dnf -y install xrdp
 systemctl start xrdp
-dnf install virt-manager
+dnf -y install virt-manager

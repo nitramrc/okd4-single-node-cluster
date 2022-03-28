@@ -41,6 +41,6 @@ virsh destroy okd4-snc-bootstrap
 virsh destroy okd4-snc-master
 virsh undefine okd4-snc-bootstrap
 virsh undefine okd4-snc-master
-rm -rf install-config-snc.yaml okd4-install-dir/ syslinux-6.03* work-dir/ /VirtualMachines/okd4-snc-*
+rm -rf okd4-install-dir/ syslinux-6.03* work-dir/ /VirtualMachines/okd4-snc-*
 
 ```

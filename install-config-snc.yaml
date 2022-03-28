@@ -3,7 +3,7 @@ baseDomain: %%SNC_DOMAIN%%
 metadata:
   name: okd4-snc
 networking:
-  networkType: OpenShiftSDN
+  networkType: OVNKubernetes
   clusterNetwork:
   - cidr: 10.100.0.0/14 
     hostPrefix: 23 

@@ -32,3 +32,15 @@ systemctl stop cloud-config.service cloud-final.service cloud-init-local.service
 
 # patch
 oc patch ClusterVersion version --type merge --patch '{"spec":{"upstream":"https://amd64.origin.releases.ci.openshift.org/graph"}}'
+
+# force destroy debug
+
+```
+cd ${OKD4_SNC_PATH}
+virsh destroy okd4-snc-bootstrap
+virsh destroy okd4-snc-master
+virsh undefine okd4-snc-bootstrap
+virsh undefine okd4-snc-master
+rm -rf install-config-snc.yaml okd4-install-dir/ syslinux-6.03* work-dir/ /VirtualMachines/okd4-snc-*
+
+```

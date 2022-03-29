@@ -60,9 +60,15 @@ curl $ISO_URL > rhcos-live.x86_64.iso
 mkdir ocp
 cp install-config.yaml ocp
 openshift-install --dir=ocp create single-node-ignition-config
-alias coreos-installer='podman run --privileged --rm -v /dev:/dev -v /run/udev:/run/udev -v $PWD:/data -w /data quay.io/coreos/coreos-installer:release'
+#alias coreos-installer='podman run --privileged --rm -v /dev:/dev -v /run/udev:/run/udev -v $PWD:/data -w /data quay.io/coreos/coreos-installer:release'
+alias coreos-installer='podman run --privileged --rm -v /dev:/dev -v /run/udev:/run/udev -v $PWD:/data -w /data quay.io/coreos/coreos-installer:v0.8.0'
 cp ocp/bootstrap-in-place-for-live-iso.ign iso.ign
 coreos-installer iso ignition embed -fi iso.ign rhcos-live.x86_64.iso
 yes | cp -f rhcos-live.x86_64.iso /tmp
+
+###
+
+virsh destroy okd4-snc-master ; virsh undefine okd4-snc-master ; rm -f /VirtualMachines/okd4-snc-master ; rm -f /tmp/rhcos-live.x86_64.iso
+
 
 ```

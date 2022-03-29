@@ -17,8 +17,8 @@ controlPlane:
   replicas: 1
 platform:
   none: {}
-BootstrapInPlace:
-  InstallationDisk: /dev/vda
+# BootstrapInPlace:
+#   InstallationDisk: /dev/vda
 pullSecret: '{"auths":{"fake":{"auth": "Zm9vOmJhcgo="}}}'
 sshKey: %%SSH_KEY%%
 

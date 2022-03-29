@@ -36,6 +36,10 @@ mkdir -p ~/bin
 yes | cp -f ./bin/* ~/bin
 chmod 750 ~/bin/*
 
+#
+# R E L O G I N !!!!!!!!!!!!!!!!!!!!!!!!!!!
+#
+
 ##########
 
 echo 'export PATH="$HOME/bin:$PATH"' >> ~/.bashrc

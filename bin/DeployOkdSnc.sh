@@ -6,7 +6,7 @@ set -x
 CPU=${SNC_CPU:-20}
 MEMORY=${SNC_MEMORY:-61440}
 DISK=${SNC_DISK:-200}
-FCOS_VER=${FCOS_VER:-35.20220227.3.0}
+FCOS_VER=${FCOS_VER:-33.20210104.3.0}
 FCOS_STREAM=${FCOS_STREAM:-stable}
 
 for i in "$@"
@@ -39,7 +39,7 @@ function configOkdNode() {
 
 cat << EOF > ${OKD4_SNC_PATH}/work-dir/ignition/${role}.yml
 variant: fcos
-version: 1.4.0
+version: 1.1.0
 ignition:
   config:
     merge:
@@ -107,8 +107,8 @@ rm -rf okd-release-tmp
 # Download fcct
 rm -rf ${OKD4_SNC_PATH}/work-dir
 mkdir -p ${OKD4_SNC_PATH}/work-dir/ignition
-wget https://github.com/coreos/butane/releases/download/v0.14.0/butane-x86_64-unknown-linux-gnu
-mv butane-x86_64-unknown-linux-gnu ${OKD4_SNC_PATH}/work-dir/fcct 
+wget https://github.com/coreos/fcct/releases/download/v0.6.0/fcct-x86_64-unknown-linux-gnu
+mv fcct-x86_64-unknown-linux-gnu ${OKD4_SNC_PATH}/work-dir/fcct 
 chmod 750 ${OKD4_SNC_PATH}/work-dir/fcct
 
 # Create and deploy ignition files

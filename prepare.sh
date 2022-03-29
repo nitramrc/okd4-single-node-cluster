@@ -3,7 +3,7 @@ cd $HOME
 
 
 dnf -y module install virt
-dnf -y install wget git net-tools bind bind-utils bash-completion rsync libguestfs-tools virt-install epel-release libvirt-devel httpd-tools nginx
+dnf -y install wget git net-tools bind bind-utils bash-completion rsync libguestfs-tools virt-install epel-release libvirt-devel httpd-tools nginx podman mc vim
 dnf -y groupinstall "Xfce" "base-x"
 dnf -y install virt-manager
 dnf -y install xrdp

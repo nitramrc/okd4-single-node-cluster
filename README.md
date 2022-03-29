@@ -64,6 +64,7 @@ alias coreos-installer='podman run --privileged --rm -v /dev:/dev -v /run/udev:/
 cp ocp/bootstrap-in-place-for-live-iso.ign iso.ign
 coreos-installer iso ignition embed -fi iso.ign rhcos-live.x86_64.iso
 yes | cp -f rhcos-live.x86_64.iso /tmp
+echo lastcmd
 
 ###
 

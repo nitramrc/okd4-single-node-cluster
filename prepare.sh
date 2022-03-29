@@ -4,6 +4,11 @@ cd $HOME
 
 dnf -y module install virt
 dnf -y install wget git net-tools bind bind-utils bash-completion rsync libguestfs-tools virt-install epel-release libvirt-devel httpd-tools nginx
+dnf -y groupinstall "Xfce" "base-x"
+dnf -y install virt-manager
+dnf -y install xrdp
+
+systemctl start xrdp
 
 systemctl enable libvirtd --now
 mkdir /VirtualMachines
@@ -14,11 +19,6 @@ virsh pool-autostart default
 virsh pool-start default
 systemctl start libvirtd
 
-dnf -y groupinstall "Xfce" "base-x"
-dnf -y install xrdp
-systemctl start xrdp
-dnf -y install virt-manager
-
 systemctl enable nginx --now
 mkdir -p /usr/share/nginx/html/install/fcos/ignition
 systemctl start nginx
@@ -26,7 +26,6 @@ systemctl start nginx
 ssh-keygen -t ed25519 -N "" -f /root/.ssh/id_ed25519
 
 ########## manual debug
-
 mkdir -p /root/okd4-snc
 cd /root/okd4-snc
 git clone -b new --single-branch git@github.com:nitramrc/okd4-single-node-cluster.git
@@ -41,18 +40,16 @@ chmod 750 ~/bin/*
 #
 
 ##########
-
 echo 'export PATH="$HOME/bin:$PATH"' >> ~/.bashrc
 echo ". /root/bin/setSncEnv.sh" >> ~/.bashrc
 . /root/bin/setSncEnv.sh
 
 ########## manual debug
-
 /root/bin/setupDNS.sh
+dig master.okd4-snc.snc.test
+dig -x $(dig master.okd4-snc.snc.test +short)
 
 ########## manual debug
-
-
 cp ${OKD4_SNC_PATH}/okd4-single-node-cluster/install-config-snc.yaml ${OKD4_SNC_PATH}/install-config-snc.yaml
 sed -i "s|%%SNC_DOMAIN%%|${SNC_DOMAIN}|g" ${OKD4_SNC_PATH}/install-config-snc.yaml
 SSH_KEY=$(cat ~/.ssh/id_ed25519.pub)
@@ -60,8 +57,6 @@ sed -i "s|%%SSH_KEY%%|${SSH_KEY}|g" ${OKD4_SNC_PATH}/install-config-snc.yaml
 
 
 ########## manual debug
-
-
 cd ${OKD4_SNC_PATH}
 wget https://github.com/openshift/okd/releases/download/${OKD_RELEASE}/openshift-client-linux-${OKD_RELEASE}.tar.gz
 tar -xzf openshift-client-linux-${OKD_RELEASE}.tar.gz
@@ -78,3 +73,8 @@ mv -f openshift-install ~/bin
 mv -f oc ~/bin
 cd ..
 rm -rf okd-release-tmp
+
+
+##########
+
+echo "R E L O G I N !!!!!!!!!!!!!!!!!!!!!!!!!!!"

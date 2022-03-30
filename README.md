@@ -85,3 +85,11 @@ oc patch IngressController default -n openshift-ingress-operator -p='{"spec": {"
 oc patch authentications.operator.openshift.io cluster -p='{"spec": {"unsupportedConfigOverrides": {"useUnsupportedUnsafeNonHANonProductionUnstableOAuthServer": true }}}' --type=merge
 
 ```
+
+## test upgrade
+Cluster operator authentication should not be upgraded between minor versions: UnsupportedConfigOverridesUpgradeable: setting: [useUnsupportedUnsafeNonHANonProductionUnstableOAuthServer]
+
+```
+# not solved
+oc patch clusterversion version --type="merge" -p '{"spec":{"channel":"stable-4.10"}}'  
+```

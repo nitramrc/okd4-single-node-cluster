@@ -72,3 +72,16 @@ virsh destroy okd4-snc-master ; virsh undefine okd4-snc-master ; rm -f /VirtualM
 
 
 ```
+
+# 4.9
+```
+# do not use it
+oc patch etcd cluster -p='{"spec": {"unsupportedConfigOverrides": {"useUnsupportedUnsafeNonHANonProductionUnstableEtcd": true}}}' --type=merge
+
+# currently used it
+oc patch IngressController default -n openshift-ingress-operator -p='{"spec": {"replicas": 1}}' --type=merge
+
+# test to not applied 
+oc patch authentications.operator.openshift.io cluster -p='{"spec": {"unsupportedConfigOverrides": {"useUnsupportedUnsafeNonHANonProductionUnstableOAuthServer": true }}}' --type=merge
+
+```

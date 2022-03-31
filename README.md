@@ -50,7 +50,7 @@ rm -rf okd4-install-dir/ syslinux-6.03* work-dir/ /VirtualMachines/okd4-snc-*
 virsh net-update default add-last ip-dhcp-host '<host mac="52:54:00:fb:85:a1" ip="192.168.122.150"/>' --live --config --parent-index 0
 ```
 
-# testing
+# testing bootstrap-in-place
 ```
 OCP_VERSION=$OKD_RELEASE
 cd ${OKD4_SNC_PATH}
@@ -73,23 +73,19 @@ virsh destroy okd4-snc-master ; virsh undefine okd4-snc-master ; rm -f /VirtualM
 
 ```
 
-# 4.9
+# 4.9, 4.10
+single node not possible upgrade !!! 
 ```
-# do not use it
 oc patch etcd cluster -p='{"spec": {"unsupportedConfigOverrides": {"useUnsupportedUnsafeNonHANonProductionUnstableEtcd": true}}}' --type=merge
-
-# currently used it
 oc patch IngressController default -n openshift-ingress-operator -p='{"spec": {"replicas": 1}}' --type=merge
-
-# test to not applied 
 oc patch authentications.operator.openshift.io cluster -p='{"spec": {"unsupportedConfigOverrides": {"useUnsupportedUnsafeNonHANonProductionUnstableOAuthServer": true }}}' --type=merge
 
 ```
 
-## test upgrade
-Cluster operator authentication should not be upgraded between minor versions: UnsupportedConfigOverridesUpgradeable: setting: [useUnsupportedUnsafeNonHANonProductionUnstableOAuthServer]
+
+# 4.10
 
 ```
-# not solved
-oc patch clusterversion version --type="merge" -p '{"spec":{"channel":"stable-4.10"}}'  
+oc get pods --all-namespaces
+openshift-multus                                   ip-reconciler-27478080-72w52                                0/1     Error
 ```

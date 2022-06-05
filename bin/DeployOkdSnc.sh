@@ -116,8 +116,8 @@ rm -rf ${OKD4_SNC_PATH}/okd4-install-dir
 mkdir -p ${OKD4_SNC_PATH}/okd4-install-dir
 cp ${OKD4_SNC_PATH}/install-config-snc.yaml ${OKD4_SNC_PATH}/okd4-install-dir/install-config.yaml
 # OKD_VER=$(echo $OKD_RELEASE | sed  "s|4.9.0-0.okd|4.9|g")
-OKD_VER=$(echo $OKD_RELEASE | sed  "s|4.10.0-0.okd|4.10|g")
-sed -i "s|%%OKD_VER%%|${OKD_VER}|g" ${OKD4_SNC_PATH}/okd4-install-dir/install-config.yaml
+# OKD_VER=$(echo $OKD_RELEASE | sed  "s|4.10.0-0.okd|4.10|g")
+# sed -i "s|%%OKD_VER%%|${OKD_VER}|g" ${OKD4_SNC_PATH}/okd4-install-dir/install-config.yaml
 openshift-install --dir=${OKD4_SNC_PATH}/okd4-install-dir create ignition-configs
 
 # Modify ignition files for IP config:

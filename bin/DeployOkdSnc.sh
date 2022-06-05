@@ -200,4 +200,4 @@ mkisofs -o /tmp/snc-master.iso -b isolinux/isolinux.bin -c isolinux/boot.cat -no
 mkdir -p /VirtualMachines/okd4-snc-master
 virt-install --name okd4-snc-master --memory ${MEMORY} --vcpus ${CPU} --disk size=${DISK},path=/VirtualMachines/okd4-snc-master/rootvol,bus=sata --cdrom /tmp/snc-master.iso --network bridge=virbr0 --mac=${MASTER_MAC} --graphics none --noautoconsole --os-variant centos7.0 --check disk_size=off
 
-rm -rf ${OKD4_SNC_PATH}/fcos-iso
+# rm -rf ${OKD4_SNC_PATH}/fcos-iso
